@@ -226,6 +226,7 @@ def parse_video(video_path, compress=True):
 
 
 def parse_video_dir(video_dir, compress=False):
+    print('Video ' + video_dir.split('/')[1] + ' is parsing.')
     video_paths = os.listdir(video_dir)
     for index, video_path in enumerate(video_paths):
         if "mp4" not in video_path and "mov" not in video_path and "MOV" not in video_path:
@@ -255,7 +256,10 @@ def parse_video_dir(video_dir, compress=False):
                 video_capture.release()
                 break
 # parse_video_dir('data/sit-up', True)
-
+def parse_all_video():
+    for dir in ['data/pull-up', 'data/sit-up', 'data/push-up']:
+        parse_video_dir(dir, True)
+    print('All video has been parsed.')
 
 def insert_points(origin, new):
     res = []

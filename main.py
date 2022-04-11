@@ -54,7 +54,7 @@ def counting(path):
     # roi区域
     roi = False
     # 隔freq帧提取一次
-    freq_dense, freq_5, freq_3 = 3, 0, 0
+    freq_dense, freq_5, freq_3 = 4, 0, 0
     freq = freq_dense
     # 视频帧序列索引
     index = 0
@@ -315,20 +315,18 @@ def counting(path):
 
 if __name__ == '__main__':
     # for action in ["data/sit-up-compress"]:
-    for action in ["data/sit-up-compress"]:
+    for action in ["data/pull-up-compress", "data/sit-up-compress", "data/push-up-compress"]:
         action_path = action
         for dir in os.listdir(action_path):
             if os.path.isdir(action_path + "/" + dir):
                 if "roi" in dir:
                     continue
-                if dir != "51-40":
-                    continue
-                print(dir)
+                print('Video ' + dir + ' is been counted.')
                 img_path = action_path + "/" + dir
                 action_count, action_time, frame_count, c_3, c_5, c_d = counting(img_path)
-                print(action_count)
-                with open('compress-roi.csv', 'a+', newline='') as csvfile:
-                    writer = csv.writer(csvfile)
-                    writer.writerow([dir, round(min(action_count, int(dir.split("-")[1])) / max(action_count, int(dir.split("-")[1])), 3),
-                                     int(1000 * action_time / int(dir.split("-")[1]))])
+                print('Count is ' + str(action_count))
+                # with open('compress.csv', 'a+', newline='') as csvfile:
+                #     writer = csv.writer(csvfile)
+                #     writer.writerow([dir, round(min(action_count, int(dir.split("-")[1])) / max(action_count, int(dir.split("-")[1])), 3),
+                #                      int(1000 * action_time / int(dir.split("-")[1]))])
                     # writer.writerow([dir, int(dir.split("-")[1]), c_3, c_5, c_d])
