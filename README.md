@@ -1,4 +1,7 @@
 # Counting-Demo
+1. 安装依赖\
+`conda env create -n alphapose -f environment.yaml`\
+**请根据自己的显卡配置自行安装相应版本pytorch**
 1. 编译AlphaPose模型环境\
 `python setup.py build develop`
 2. 下载数据\
@@ -15,4 +18,3 @@ https://cloud.tsinghua.edu.cn/f/666142613e8245b58c3c/ yolov3-spp.weights放置�
 ` python -c "import utils; utils.parse_all_video()"`
 5. 运行程序\
 `python main.py`\
-计数结果及中间过程将被保存在{视频名}.log文件中
